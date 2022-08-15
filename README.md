@@ -17,7 +17,7 @@
   To install dependencies run npm install through the command line.
 
   ## Usage
-  The app is a simple budget tracker to add or subtract funds. A live version of the app can be found here
+  The app is a simple budget tracker to add or subtract funds. A live version of the app can be found here: https://intense-fjord-07092.herokuapp.com/
 
   ## License
   This project is licensed using the MIT license. For details look here: https://opensource.org/licenses/MIT
