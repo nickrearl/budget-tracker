@@ -37,8 +37,8 @@ let db;
   For the object store, something like "transactions".
 */
 
-const database = "your-variable-name-here"
-const objectStore = "your-variable-name-here"
+const database = "budget"
+const objectStore = "transactions"
 
 /*
   INFO: Here we tell indexedDb to open (or create) whatever database we 
@@ -72,6 +72,8 @@ request.onsuccess = ({ target }) => {
   }
 };
 
+checkDatabase()
+
 /* INFO: Simple error handler. Nothing to see here. Move along. */
 request.onerror = function(event) {
   console.log("Woops! " + event.target.errorCode);
@@ -86,8 +88,8 @@ request.onerror = function(event) {
   variable.
 */
 function saveRecord(record) {
-  const transaction = db.transaction(["OBJECT_STORE"], "readwrite");
-  const store = transaction.objectStore("OBJECT_STORE");
+  const transaction = db.transaction([objectStore], "readwrite");
+  const store = transaction.objectStore(objectStore);
   store.add(record);
 }
 
@@ -104,8 +106,8 @@ function saveRecord(record) {
   variable.
 */
 function checkDatabase() {
-  const transaction = db.transaction(["OBJECT_STORE"], "readwrite");
-  const store = transaction.objectStore("OBJECT_STORE");
+  const transaction = db.transaction([objectStore], "readwrite");
+  const store = transaction.objectStore(objectStore);
   const getAll = store.getAll();
 
   getAll.onsuccess = function() {
@@ -120,7 +122,7 @@ function checkDatabase() {
         TODO: Insert the route name specified above.
       */
 
-      fetch("INSERT_UPDATE_ROUTE_NAME_HERE", {
+      fetch("/api/transaction/bulk", {
         method: "POST",
         body: JSON.stringify(getAll.result),
         headers: {
